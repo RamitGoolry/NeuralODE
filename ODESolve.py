@@ -35,7 +35,7 @@ def runge_kutta4(z0, f, t0, t1, dt=1e-3):
 
     Parameters:
     z0: initial condition
-    f: function to solve => f(t, z)
+    f: function to solve => f(z, t)
     t0: initial time
     t1: final time
     dt: time step
@@ -48,10 +48,10 @@ def runge_kutta4(z0, f, t0, t1, dt=1e-3):
     z = z0
 
     while t < t1:
-        k1 = f(t, z)
-        k2 = f(t + dt / 2, z + k1 * dt / 2)
-        k3 = f(t + dt / 2, z + k2 * dt / 2)
-        k4 = f(t + dt, z + k3 * dt)
+        k1 = f(z, t)
+        k2 = f(z + k1 * dt / 2, t + dt / 2)
+        k3 = f(z + k2 * dt / 2, t + dt / 2)
+        k4 = f(z + k3 * dt, t + dt)
 
         z += (k1 + 2 * k2 + 2 * k3 + k4) * dt / 6
         t += dt
